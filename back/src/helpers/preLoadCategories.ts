@@ -7,16 +7,17 @@ interface ICategory {
 }
 
 const categoriesToPreLoad: ICategory[] = [
-    { name: 'Smartphones' },
-    { name: 'Laptops' },
-    { name: 'Tablets' },
-    { name: 'Headphones' },
-    { name: 'Cameras' },
-    { name: 'Printers' },
-    { name: 'Monitors' },
-    { name: 'Storage' },
-    { name: 'Accessories' }
+  { name: 'Rap' },
+  { name: 'Rock' },
+  { name: 'Reggae' },
+  { name: 'Jazz' },
+  { name: 'Funk' },
+  { name: 'Soul' },
+  { name: 'Clásicos del Hip-Hop' },
+  { name: 'Vinilos Edición Limitada' },
+  { name: 'Instrumentales' }
 ];
+
 
 export const preLoadCategories = async () => {
     const categories = await CategoryRepository.find();
