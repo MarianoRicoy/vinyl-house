@@ -38,6 +38,9 @@ interface IUser {
     orders: IOrder[];
 }
 
+type Params<T> = Promise<T>
+type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
+
 // TODO: llevar al servicio de fetch cuando lo implmentemos
 
 interface createOrderDto { //POST
