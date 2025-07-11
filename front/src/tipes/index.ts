@@ -1,7 +1,7 @@
 interface Icategory {
     id: number;
     name: string;
-    products: IProduct[];
+    products?: IProduct[];
 }
 
 interface IOrder {

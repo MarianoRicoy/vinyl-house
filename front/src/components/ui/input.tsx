@@ -1,0 +1,49 @@
+import React from "react";
+import clsx from "clsx";
+
+
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label: string;
+  children?: React.ReactNode;
+  error?: string;
+  
+}
+
+const Input = ({ label, id, className, children, error, ...rest }:InputProps) => {
+  return (
+    <div>
+      <label
+        htmlFor={id}
+        className="block mb-2 text-sm font-semibold text-black dark:text-white"
+        style={{ background: 'gray' }}
+
+      >
+      {label}
+      </label>
+      <div className="flex">
+        <input
+          id={id}
+          className={clsx(
+          "bg-gray-200 text-gray-900 border border-gray-500 text-sm rounded-lg",
+          "focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10",
+          "dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:placeholder-gray-400",
+          "pr-10",
+            className
+          )}
+          {...rest}
+        />
+        {children && (
+          <span 
+          className="flex items-center px-3 rounded-r-lg bg-primary-300 text-black text-sm h-full -ml-2"
+          style={{ height: '40px' }}
+          >
+          {children}
+          </span>
+        )}
+      </div>
+      {error && <span className="text-red-500 my-2">{error}</span>}
+    </div>
+  );
+};
+
+export default Input;

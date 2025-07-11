@@ -6,21 +6,21 @@ const PageLanding = () => {
 
     return (
 <div
-  className="min-h-screen bg-zinc-950 text-white px-6 py-12 bg-cover bg-center"
-  style={{
-    backgroundImage: "url('/fondoViniloVI.jpg')",
-  }}
+        className="min-h-screen bg-zinc-950 text-white px-6 py-12 bg-cover bg-center"
+        style={{
+        backgroundImage: "url('/fondoVinilo.jpg')",
+    }}
 >
 
-    <div className="max-w-5xl mx-auto space-y-16">
+<div className="max-w-5xl mx-auto space-y-16">
 
         {/* Hero section */}
         <section className="text-center space-y-6">
         <h1 className="text-4xl font-bold tracking-tight">
-            🎶 Vinilos que cambiaron la historia
+            Vinilos que cambiaron la historia
         </h1>
         <p className="text-gray-400 max-w-xl mx-auto">
-            Ediciones originales de dos álbumes legendarios. Piezas de colección, sonido analógico puro.
+            Ediciones originales de dos álbumes legendarios. Piezas de colección.
         </p>
         <a
             href="/cart"
@@ -33,7 +33,7 @@ const PageLanding = () => {
         {/* Productos */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {cart.map((product) => (
-            <div
+        <div
             key={product.id}
             className="bg-zinc-900 rounded-xl shadow-lg overflow-hidden flex flex-col"
             >
@@ -66,7 +66,7 @@ const PageLanding = () => {
         {/* CTA final */}
         <section className="text-center mt-12">
         <h3 className="text-2xl font-semibold mb-4">
-            Ediciones limitadas. Sonido eterno.
+            Ediciones limitadas. 
         </h3>
         <a
             href="/cart"

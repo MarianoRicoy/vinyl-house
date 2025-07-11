@@ -1,6 +1,7 @@
 import Container from "@/components/layout/container";
 import Footer from "@/components/layout/footer";
 import Navbar from "@/components/layout/navbar/navbar";
+import Link from "next/link";
 import React from "react";
 
 const NotFound = () => {
@@ -16,12 +17,12 @@ const NotFound = () => {
           <p className="text-2xl text-gray-200 mb-8 drop-shadow">
             Página no encontrada... como ese vinilo raro que siempre se pierde
           </p>
-          <a
+          <Link
             href="/"
             className="text-white underline text-lg hover:text-yellow-300 transition"
           >
-            Volver al inicio
-          </a>
+          Volver al inicio
+          </Link>
         </div>
       </Container>
       <Footer />
