@@ -14,8 +14,8 @@ const Input = ({ label, id, className, children, error, ...rest }:InputProps) =>
     <div>
       <label
         htmlFor={id}
-        className="block mb-2 text-sm font-semibold text-black dark:text-white"
-        style={{ background: 'gray' }}
+        className="block mb-2 text-sm font-semibold text-black dark:text-black"
+        style={{ background: '' }}
 
       >
       {label}
@@ -26,7 +26,7 @@ const Input = ({ label, id, className, children, error, ...rest }:InputProps) =>
           className={clsx(
           "bg-gray-200 text-gray-900 border border-gray-500 text-sm rounded-lg",
           "focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10",
-          "dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:placeholder-gray-400",
+          "dark:bg-gray-400 dark:text-white dark:border-gray-600 dark:placeholder-gray-400",
           "pr-10",
             className
           )}
@@ -41,7 +41,7 @@ const Input = ({ label, id, className, children, error, ...rest }:InputProps) =>
           </span>
         )}
       </div>
-      {error && <span className="text-red-500 my-2">{error}</span>}
+      {error && <span className="text-red-300 my-2">{error}</span>}
     </div>
   );
 };

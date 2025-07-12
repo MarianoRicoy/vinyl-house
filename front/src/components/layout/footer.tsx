@@ -14,7 +14,7 @@ const footer = () => {
           . All Rights Reserved.
         </span>
         <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
-          <NavItem href="cart" label="carrito" />
+          <NavItem href="landing" label="novedades" />
         </ul>
       </div>
     </footer>

@@ -1,7 +1,21 @@
+
+import { getProducts } from "@/services/products";
 import ProductsList from "./components/products-list";
 
-export default function Home() {
-  return (
+const getData = async () => {
+const products = await getProducts();
+const categories: unknown[] = [];
+
+  return {
+    products,
+    categories
+  }
+}
+
+export default async function Home() {
+  const {products, categories} = await getData();
+
+return (
     <div>
       <section className="w-full h-96 flex items-center justify-center bg-gray-100 mb-8">
         <img
@@ -12,8 +26,8 @@ export default function Home() {
       </section>
       <section>
         <h2>Productos Destacados 🎶</h2>
-      <ProductsList />
+      <ProductsList products={products} />
       </section>
     </div>
-  );
+);
 }

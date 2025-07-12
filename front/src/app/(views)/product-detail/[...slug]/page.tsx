@@ -1,22 +1,19 @@
 import React from 'react';
-import { products } from '@/helpers/products';
 import { routes } from '@/routes';
 import { redirect } from 'next/navigation';
+import { getProductById } from '@/services/products';
 
 export default async function Page({
   params,
-  //searchParams,
 }: {
   params: Params<{ slug: string[] }>;
-  searchParams: SearchParams;
 }) {
   const { slug } = await params;
   const id = slug[0];
 
-  console.log('slug', slug);
-
   //simulamos llaada al back y consultamos por id el detalle del producto,para simular hacemos un find con el array harcodeado de productos q tenemos en el home
-  const product = products.find((p) => p.id === Number(id));
+  //const product = products.find((p) => p.id === Number(id));
+  const product = await getProductById(id)
 
   //si en la busqueda no existe ningun prod. con ese id redirecciona al usuario a una pag NotFound
   if (!product) {
@@ -24,12 +21,16 @@ export default async function Page({
   }
 
   return (
-    <div className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/fondoVinilo.jpg')" }}>
-      <div className="bg-black/70 backdrop-blur-md rounded-2xl shadow-2xl max-w-5xl w-full flex flex-col md:flex-row overflow-hidden">
-        {/* Imagen del producto */}
-        <div className="md:w-1/2 w-full">
-          <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
-        </div>
+<div
+  className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat flex items-center justify-center"
+  style={{ backgroundImage: "url('')" }}
+>
+  <div className="bg-black/70 backdrop-blur-md rounded-2xl shadow-2xl max-w-5xl w-full flex flex-col md:flex-row overflow-hidden">
+    {/* Imagen del producto */}
+    <div className="md:w-1/2 w-full">
+      <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+    </div>
+
 
         {/* Detalles del producto */}
         <div className="md:w-1/2 w-full p-6 md:p-10 flex flex-col justify-center">
