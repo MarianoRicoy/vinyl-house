@@ -1,15 +1,20 @@
 'use client'
+import React from 'react'
+import Link from 'next/link';
 import Button from '@/components/ui/button';
 import { routes } from '@/routes';
-import Link from 'next/link';
-import React from 'react'
 import { PiShoppingCartSimpleDuotone } from "react-icons/pi";
 import { MdLogout } from "react-icons/md";
 import { PiUserCircleDuotone } from "react-icons/pi";
+import { UseAuthContext } from '@/context/authContext';
+import { usePathname } from 'next/navigation';
+import Loader from '@/components/ui/loader/loader';
 
 
 export const AuthNavbar = () => {
-  const isAuthenticated = false; // Replace with actual authentication logic
+  const { isAuth, resetUserData } = UseAuthContext(); // obtener el estado de autenticacion y la funcion para resetear los datos del usuario
+
+  const pathname = usePathname();
 
   const user = {
     id: 1,
@@ -18,14 +23,25 @@ export const AuthNavbar = () => {
     address: 'Calle 123, Miramar, Buenos Aires',
     phone: '+54 9 223 4567890',
     role: 'user',
-  };
+  }; 
 
-const logout = () =>{
-  console.log("Logout function not implemented yet")
-}
+  const logout = () =>{
+  resetUserData();
+
+
+  if (pathname === routes.home) {
+
+  location.href = routes.login;
+    return;
+  }
+  location.href = routes.home; // 
+};
+  if(isAuth === null) {
+  return <Loader />
+  }; // Si isAuth es null, significa que estamos esperando la respuesta de la autenticacion
 
 // Lo que se muestra si el usuario NO esta autenticado 
-  if (!isAuthenticated) {
+  if (!isAuth) { //false 
     return (
       <div>
         <Link href={routes.login}>
@@ -62,4 +78,4 @@ const logout = () =>{
   </div>
   </div>
   );
-};
+};  

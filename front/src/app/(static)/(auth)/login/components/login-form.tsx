@@ -1,13 +1,16 @@
 'use client';
 import Button from '@/components/ui/button';
 import Input from '@/components/ui/input';
+import { UseAuthContext } from '@/context/authContext';
+import { routes } from '@/routes';
 import { postLogin } from '@/services/auth';
 import { EyeIcon, EyeOff } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { toast } from 'react-toastify';
 import * as yup from 'yup'; 
 
-let loginSchema = yup.object({
+const loginSchema = yup.object({
   email: yup
   .string()
   .email('El correo electronico no es valido')
@@ -20,6 +23,8 @@ let loginSchema = yup.object({
 });
 
 const LoginForm = () => {
+  const {saveUserData} = UseAuthContext();
+  const router= useRouter();
   const [formData, setFormData] = React.useState({
     //email: '',
     //password: '',
@@ -76,7 +81,17 @@ if (res.errors) {
 console.log("respuesta", res.data);
 toast.success("Usuario logueado correctamente");
 
-}catch (error: unknown) {
+//guardar datos del usuario
+saveUserData(res.data);
+
+//guardar el token en localStorage o cookies
+
+//redireccionar al usuario a la pagina de inicio o dashboard
+setTimeout(() => {
+  router.push(routes.home);
+}, 2000);
+
+}catch (error:any) {
   toast.error("ocurrio un error al iniciar sesion");
 } finally {
   setTimeout(() => {
@@ -98,19 +113,22 @@ toast.success("Usuario logueado correctamente");
       onChange={handleChange}
       error={errors?.email}
     />
-    <Input
-      label="Contraseña"
-      id="password"
-      type={showPassword ? "text" : "password"}
-      placeholder="Ingresa tu contraseña"
-      className="mb-4"
-      value={formData.password}
-      onChange={handleChange}
-      children={
-      <div onClick={handleShowPassword}>
-        {showPassword ? <EyeOff /> : <EyeIcon />}
-        </div>}
-    />
+<Input
+  label="Contraseña"
+  id="password"
+  type={showPassword ? "text" : "password"}
+  placeholder="Ingresa tu contraseña"
+  className="mb-4"
+  value={formData.password}
+  onChange={handleChange}
+  error={errors?.password}
+>
+  <div onClick={handleShowPassword} className="cursor-pointer px-2">
+    {showPassword ? <EyeOff size={16} /> : <EyeIcon size={16} />}
+  </div>
+</Input>
+
+
     {errors?.password && <span className="text-red-500 text-sm mb-2">{errors?.password}</span>}
     <Button label="iniciar sesion" type="submit"
     className="mt-3 

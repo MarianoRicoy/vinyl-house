@@ -1,15 +1,7 @@
 import React from 'react';
+import UserData from './components/user-data';
 
 const PageProfile = () => {
-  const user = {
-    id: 1,
-    name: 'Mariano Ricoy',
-    email: 'nano@example.com',
-    address: 'Calle 123, Miramar, Buenos Aires',
-    phone: '+54 9 223 4567890',
-    role: 'user',
-  };
-
   const orders = [
     {
       id: 2,
@@ -49,24 +41,7 @@ const PageProfile = () => {
         {/* Perfil + órdenes */}
         <div className="lg:w-1/2 w-full flex flex-col gap-10">
           {/* Perfil */}
-          <div className="bg-zinc-900 rounded-2xl shadow-2xl p-8 space-y-4">
-            <h2 className="text-xl font-semibold border-b border-zinc-700 pb-2">Perfil de Usuario</h2>
-            <p>
-              <strong>Nombre:</strong> {user.name}
-            </p>
-            <p>
-              <strong>Email:</strong> {user.email}
-            </p>
-            <p>
-              <strong>Dirección:</strong> {user.address}
-            </p>
-            <p>
-              <strong>Teléfono:</strong> {user.phone}
-            </p>
-            <p>
-              <strong>Rol:</strong> {user.role}
-            </p>
-          </div>
+          <UserData />
 
           {/* Órdenes */}
           <div className="bg-zinc-900 rounded-2xl shadow-2xl p-8">

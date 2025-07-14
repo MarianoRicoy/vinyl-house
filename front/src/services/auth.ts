@@ -1,5 +1,6 @@
 "use server";
 import axios from "axios";
+import { LoginServiceResponse } from "./types";
 console.log("BaseURL Axios:", process.env.NEXT_PUBLIC_API_URL);
 
 const axiosApiBack = axios.create({
@@ -31,7 +32,7 @@ export const postRegister = async (data: RegisterUserDto) => {
   };
 };
 
-export const postLogin = async (data: LoginUserDto) => {
+export const postLogin = async (data: LoginUserDto): Promise<LoginServiceResponse> => {
   try{
     const res = await axiosApiBack.post("/users/login", data);
 
