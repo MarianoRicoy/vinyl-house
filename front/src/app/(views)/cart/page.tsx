@@ -1,6 +1,6 @@
 import { products } from '@/helpers/products';
 import React from 'react';
-import { FaCompactDisc } from 'react-icons/fa';
+import { TbVinyl } from 'react-icons/tb';
 
 const PageCart = () => {
   const cart = products.slice(0, 4);
@@ -22,7 +22,7 @@ const PageCart = () => {
 
         {/* Título */}
         <div className="flex items-center gap-3">
-          <FaCompactDisc className="text-zinc-500 text-3xl" />
+          <TbVinyl className=" h-10 text-primary-500" />
           <h1 className="text-3xl font-bold tracking-tight text-zinc-800">Mi Carrito</h1>
         </div>
 

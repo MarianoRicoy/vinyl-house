@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FC } from "react";
 import { TbVinyl } from "react-icons/tb";
 
@@ -13,9 +14,11 @@ const LayoutMainAuth: FC<LayoutMainAuthProps> = ({ children }) => {
         <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
           <div className="flex items-center justify-center space-x-3 rtl:space-x-reverse gap-1">
             <TbVinyl className=" h-10 text-primary-500" />
+            <Link href="/">
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-black">
               The Vinyl House
-            </span>
+            </span> 
+            </Link>
           </div>
           {children}
         </div>

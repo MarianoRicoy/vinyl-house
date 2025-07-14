@@ -2,6 +2,7 @@ import React from 'react';
 import { routes } from '@/routes';
 import { redirect } from 'next/navigation';
 import { getProductById } from '@/services/products';
+import AddCartButton from '@/components/ui/product-card/add-cart-button';
 
 export default async function Page({
   params,
@@ -47,9 +48,7 @@ export default async function Page({
           </div>
 
           {/* Botón */}
-          <button disabled={product.stock === 0} className={`mt-4 px-6 py-3 rounded-lg text-sm font-semibold tracking-wide transition-all ${product.stock > 0 ? 'bg-gray-100 text-black hover:bg-white' : 'bg-gray-600 text-gray-400 cursor-not-allowed'}`}>
-            {product.stock > 0 ? 'Agregar al carrito' : 'No disponible'}
-          </button>
+<AddCartButton/>
         </div>
       </div>
     </div>

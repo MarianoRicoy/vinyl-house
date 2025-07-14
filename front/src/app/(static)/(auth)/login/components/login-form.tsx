@@ -1,13 +1,21 @@
 'use client';
 import Button from '@/components/ui/button';
 import Input from '@/components/ui/input';
+import { postLogin } from '@/services/auth';
 import { EyeIcon, EyeOff } from 'lucide-react';
 import React from 'react';
+import { toast } from 'react-toastify';
 import * as yup from 'yup'; 
 
 let loginSchema = yup.object({
-  email: yup.string().email('El correo electronico no es valido').required('El correo electronico es requerido'),
-  password: yup.string().min(6, 'La contraseña debe tener al menos 6 caracteres').required('La contraseña es requerida'),
+  email: yup
+  .string()
+  .email('El correo electronico no es valido')
+  .required('El correo electronico es requerido'),
+  password: yup
+  .string()
+  .min(6, 'La contraseña debe tener al menos 6 caracteres')
+  .required('La contraseña es requerida'),
 
 });
 
@@ -15,10 +23,12 @@ const LoginForm = () => {
   const [formData, setFormData] = React.useState({
     //email: '',
     //password: '',
-        email: 'mfricoy@mail.com',
-    password: '123456',
+    email: 'nano3@example.com',
+    password: "SuperSecreta123!",
   });
-  const [errors, setErrors] = React.useState<Record<string, string>>({});
+  const [errors, setErrors] = React.useState<Record<string,
+  string>>({});
+  const [loading, setLoading] = React.useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
 
 
@@ -51,12 +61,30 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     }));
 };
 
-const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   handleValidation();
   e.preventDefault();
-  // Aquí puedes manejar el envío del formulario, por ejemplo, enviarlo a una API
-  console.log('Formulario enviado:', formData);
-} 
+
+try{
+setLoading(true);
+const res = await postLogin (formData);
+
+if (res.errors) {
+  console.log("error",res);
+  return toast.error("ocurrio un error al iniciar sesion");
+}
+console.log("respuesta", res.data);
+toast.success("Usuario logueado correctamente");
+
+}catch (error: unknown) {
+  toast.error("ocurrio un error al iniciar sesion");
+} finally {
+  setTimeout(() => {
+    setLoading(false);
+  }, 2000);
+
+}
+}; 
 
   return (
     <form className="flex flex-col" onSubmit={onSubmit}>
@@ -82,10 +110,11 @@ const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       <div onClick={handleShowPassword}>
         {showPassword ? <EyeOff /> : <EyeIcon />}
         </div>}
-       
     />
     {errors?.password && <span className="text-red-500 text-sm mb-2">{errors?.password}</span>}
-  <Button label="iniciar sesion" type="submit" className="mt-3 text-slate-400 " />
+    <Button label="iniciar sesion" type="submit"
+    className="mt-3 
+    text-slate-400 " disabled={loading} />
     </form>
   );
 }

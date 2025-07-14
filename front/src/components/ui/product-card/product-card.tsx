@@ -1,9 +1,9 @@
 'use client';
 import React, { FC } from 'react';
-import LabelStock from './label-stock/label-stock';
-import Button from './button';
+import LabelStock from '../label-stock/label-stock';
 import { useRouter } from 'next/navigation';
 import { routes } from '@/routes';
+import AddCartButton from './add-cart-button';
 
 const ProductCard: FC<Partial<IProduct>> = ({ description, id, image, name, price, stock }) => {
   const router = useRouter();
@@ -17,24 +17,24 @@ const ProductCard: FC<Partial<IProduct>> = ({ description, id, image, name, pric
       bg-white border
       border-gray-200
       rounded-lg shadow-sm
-      dark:bg-gray-800
-      dark:border-gray-700"
+      dark:bg-gray-300
+      dark:border-gray-300"
       onClick={handleClick}
     >
       <img className="p-8 rounded-t-lg" src={image || 'https://via.placeholder.com/150'} alt={name || 'Product Image'} />
 
       <div className="px-5 pb-5">
         <a href="#">
-          <h5 className="text-xl font-extralight tracking-tight text-gray-900 dark:text-white">{name || 'Product Name'}</h5>
+          <h5 className="text-xl font-extralight tracking-tight text-gray-800 dark:text-white">{name || 'Product Name'}</h5>
         </a>
 
-        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{description || 'Product Description'}</p>
+        <p className="mt-2 text-sm text-gray-800 dark:text-gray-500">{description || 'Product Description'}</p>
 
         <LabelStock stock={stock} />
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-center flex-col justify-between gap-4 my-5">
           <span className="text-3xl font-sans text-gray-500 dark:text-gray-400">${price || '00.0'}</span>
-          <Button label="Agregar al Carrito" variant="tertiary" />
+          <AddCartButton />
         </div>
       </div>
     </div>

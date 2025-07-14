@@ -5,6 +5,7 @@ import Input from '@/components/ui/input';
 import * as Yup from 'yup';
 import Button from '@/components/ui/button';
 import { EyeIcon, EyeOff } from 'lucide-react';
+import { postRegister } from '@/services/auth';
 
 const RegisterSchema = Yup.object().shape({
   email: Yup.string().email('Correo electrónico inválido').required('Campo requerido'),
@@ -21,28 +22,71 @@ const RegisterSchema = Yup.object().shape({
   name: Yup.string().required('Campo requerido'),
 });
 
-const registerForm = () => {
+interface RegisterUserForm extends RegisterUserDto {
+  confirmPassword:string;
+}
+
+const RegisterForm = () => {
   const [showPassword, setShowPassword] = React.useState(false);
+
+  const initialValues: RegisterUserForm = {
+        //email: '',
+        //password: '',
+        //confirmPassword: '',
+        //phone: '',
+        //address: '',
+        //name: ''
+
+        
+        email: "nano3@example.com",
+        password: "SuperSecreta123!",
+        confirmPassword: 'SuperSecreta123!',
+        address: "Calle 123, Miramar, Buenos Aires",
+        phone: "+54 9 223 4567890",
+        name: "Mariano Ricoy"
+
+      }
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
 
+  const handleOnSubmit = async (
+    values: RegisterUserForm, 
+    { setSubmitting }: any
+    ) => {
+      const { confirmPassword, ...data} = values;
+
+      const payload = {
+        name: values?.name,
+        email: values?.email,
+        password: values?.password,
+        address: values?.address,
+        phone: values?.phone
+      }
+
+      try {
+      const res = await postRegister(data);
+
+      if (res.errors){
+        return alert("ocurrio un error al registrar el usuario")
+      }
+
+      //cuando sale bien:
+      alert("El usuario se ha creado correctamente")
+      }catch (e) {
+        console.log(e)
+      alert("ocurrio un error al registrar el usuario")
+      } finally {
+        setSubmitting(false);
+      }
+      }
+
   return (
     <Formik
-      initialValues={{
-        email: '',
-        password: '',
-        confirmPassword: '',
-        phone: '',
-        address: '',
-        name: ''
-      }}
+      initialValues={initialValues} 
       validationSchema={RegisterSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        console.log('Formulario enviado con los siguientes valores:', values);
-        setSubmitting(false);
-      }}
+      onSubmit={handleOnSubmit}
     >
       {({
         values,
@@ -88,11 +132,11 @@ const registerForm = () => {
               value={values.password}
               error={errors.password && touched.password ? errors.password : ""}
             >
-              <div
+              <div 
                 onClick={togglePasswordVisibility}
-                className="cursor-pointer absolute right-3 top-1/2 -translate-y-1/2"
+                className="cursor-pointer absolute right-1 top-1/2 -translate-y-1/2"
               >
-                {showPassword ? <EyeOff /> : <EyeIcon />}
+                {showPassword ? <EyeOff /> : <EyeIcon />} 
               </div>
             </Input>
 
@@ -142,7 +186,7 @@ const registerForm = () => {
             label='Registrarse'
             type='submit'
             disabled={isSubmitting}
-            className='w-full mt-4'
+            className='w-full mt-6'
           />
         </form>
       )}
@@ -150,4 +194,4 @@ const registerForm = () => {
   )
 }
 
-export default registerForm;
+export default RegisterForm;

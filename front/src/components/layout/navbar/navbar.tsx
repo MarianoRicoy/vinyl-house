@@ -3,13 +3,15 @@ import { TbVinyl } from 'react-icons/tb';
 import NavItem from './nav-item';
 import { NavLinks } from '@/constants/navLinks';
 import { routes } from '@/routes';
+import { AuthNavbar } from './auth-navbar';
+
 
 export const Navbar = () => {
   return (
-    <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+    <nav className="border-gray-50 bg-gray-200 dark:bg-gray-400 dark:border-gray-700">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href={routes.home} className="flex items-center space-x-3 rtl:space-x-reverse">
-          <span className="flex items-center gap-2 text-2xl font-semibold text-white">
+          <span className="flex items-center gap-2 text-2xl font-semibold text-gray-600">
             <TbVinyl size={20} /> The Vinyl House
           </span>
         </a>
@@ -19,16 +21,17 @@ export const Navbar = () => {
             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
           </svg>
         </button>
-        <div className="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
-          <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
-            {NavLinks.map((link) => (
+        <div className="hidden w-full flex-2 md-l-3 md:block md:w-auto" id="navbar-default">
+          <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-500 md:dark:bg-transparent dark:border-gray-600">
+            {NavLinks?.map((link) => (
               <NavItem key={link.href} href={link.href} label={link.label} />
             ))}
           </ul>
-        </div>
+        </div> 
+        <AuthNavbar />
       </div>
-    </nav>
+      </nav>
   );
 };
 
-export default Navbar;
+//export default Navbar;

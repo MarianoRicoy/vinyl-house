@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import ProductCard from "@/components/ui/product-card";
+import ProductCard from "@/components/ui/product-card/product-card";
 
 
 interface productsListProps {
