@@ -14,3 +14,15 @@ export const getProductsService = async (): Promise<Product[]> => {
 export const getProductsByIdService = async (id:string): Promise<Product | null> => {
   return await ProductRepository.findOneBy({id: Number(id)});
 };
+
+export const getProductsByCategoryService = async (
+  categoryId: string
+): Promise<Product[]> => {
+  if (categoryId === "all") {
+    return await getProductsService();
+  }
+
+  return await ProductRepository.find({
+    where: { categoryId: Number(categoryId) },
+  });
+};

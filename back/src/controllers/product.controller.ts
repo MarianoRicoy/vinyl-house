@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { catchedController } from "../utils/catchedController";
-import { getProductsByIdService, getProductsService } from "../services/products.service";
+import { getProductsByCategoryService, getProductsByIdService, getProductsService } from "../services/products.service";
 
 export const getProducts = catchedController(
   async (req: Request, res: Response) => {
@@ -17,5 +17,17 @@ export const getProductsById = catchedController(
     } 
     const product = await getProductsByIdService(productId);
     res.json(product);
+  }
+);
+
+export const getProductsByCategoryId = catchedController(
+  async (req: Request, res: Response) => {
+    const categoryId = req.params.categoryId;
+
+    if (!categoryId) {
+      return res.status(400).json({error:"category ID is required"})
+    } 
+    const productsByCategory = await getProductsByCategoryService(categoryId);
+    res.json(productsByCategory)
   }
 );

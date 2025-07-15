@@ -37,3 +37,25 @@ console.warn("error fetching product", e?.message)
   };
   return null;
 };
+
+export const getProductsByCategory = async (
+  categoryId: string
+): Promise<IProduct[]> => {
+  try {
+    const res = await axiosApiBack.get("/products/category/" + categoryId);
+    // const res = null
+
+    if (!res.data || !Array.isArray(res.data)) {
+      console.warn("Invalidad products by category data format", res.data);
+      return [];
+    }
+
+    return res.data;
+  } catch (e) {
+    if (e instanceof Error) {
+      console.warn("Error fetching products by category", e?.message);
+    }
+
+    return [];
+  }
+};

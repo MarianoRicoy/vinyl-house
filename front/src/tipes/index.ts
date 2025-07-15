@@ -37,9 +37,8 @@ interface IUser {
     role: eRole;
     orders: IOrder[];
 }
-
-type Params<T> = Promise<T>
-type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
+type Params<T> = Promise<T>;
+type SearchParams<T> = Promise<T>;
 
 // TODO: llevar al servicio de fetch cuando lo implmentemos
 
