@@ -5,7 +5,15 @@ import { useRouter } from 'next/navigation';
 import { routes } from '@/routes';
 import AddCartButton from './add-cart-button';
 
-const ProductCard: FC<Partial<IProduct>> = ({ description, id, image, name, price, stock }) => {
+const ProductCard: FC<Partial<IProduct>> = (product) => {
+  const { 
+  description, 
+  id, 
+  image, 
+  name, 
+  price, 
+  stock 
+  } = product  
   const router = useRouter();
   const handleClick = () => {
     router.push(`${routes.product_detail}/${id}/${name}`);
@@ -34,7 +42,7 @@ const ProductCard: FC<Partial<IProduct>> = ({ description, id, image, name, pric
 
         <div className="flex items-center flex-col justify-between gap-4 my-5">
           <span className="text-3xl font-sans text-gray-500 dark:text-gray-400">${price || '00.0'}</span>
-          <AddCartButton />
+          <AddCartButton product={product}/>
         </div>
       </div>
     </div>

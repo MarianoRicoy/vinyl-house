@@ -28,7 +28,7 @@ const LoginForm = () => {
   const [formData, setFormData] = React.useState({
     //email: '',
     //password: '',
-    email: 'nano3@example.com',
+    email: 'nano4@example.com',
     password: "SuperSecreta123!",
   });
   const [errors, setErrors] = React.useState<Record<string,
@@ -91,8 +91,9 @@ setTimeout(() => {
   router.push(routes.home);
 }, 2000);
 
-}catch (error:any) {
-  toast.error("ocurrio un error al iniciar sesion");
+}catch (error) {
+  console.error("Error al iniciar sesion:", error)
+  toast.error(`ocurrio un error al iniciar sesion`);
 } finally {
   setTimeout(() => {
     setLoading(false);

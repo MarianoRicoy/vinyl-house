@@ -1,10 +1,10 @@
 'use client';
 import { categories } from '@/helpers/categories';
 import React, { FC } from 'react';
+import Button from './button';
 
 const ProductCardCart: FC<Partial<IProduct>> = ({ 
-  description, 
-  id, 
+  description,  
   image, 
   name, 
   price, 
@@ -27,7 +27,7 @@ const ProductCardCart: FC<Partial<IProduct>> = ({
       <span>${price}</span>
     </div>
     <div>
-      <button label="eliminar"/>
+      <Button label="eliminar"/>
     </div>
   </div>
   );

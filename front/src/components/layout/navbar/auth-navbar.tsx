@@ -9,12 +9,14 @@ import { PiUserCircleDuotone } from "react-icons/pi";
 import { UseAuthContext } from '@/context/authContext';
 import { usePathname } from 'next/navigation';
 import Loader from '@/components/ui/loader/loader';
+import { useCartContext } from '@/context/cartContext';
 
 
 export const AuthNavbar = () => {
-  const { isAuth, resetUserData } = UseAuthContext(); // obtener el estado de autenticacion y la funcion para resetear los datos del usuario
-
+  const { isAuth, resetUserData } = UseAuthContext(); 
   const pathname = usePathname();
+  const {total} = useCartContext();
+  
 
   const user = {
     id: 1,
@@ -63,8 +65,13 @@ export const AuthNavbar = () => {
 // Lo que se muestra si el usuario SI esta autenticado
   return( 
   <div className='flex items-center space-x-4 rtl:space-x-reverse'>
-    <Link href={routes.cart}>
+    <Link href={routes.cart} className="relative">
       <PiShoppingCartSimpleDuotone className='h-5 w-5 text-gray-500'/>
+      {Boolean (total) && (
+      <span className="absolute -top-2 -right-2 bg-gray-800 text-white text-xs rounded-full px-1 py-0.25">
+        {total}
+      </span>
+      )}
     </Link>
     <Link 
     href={routes.profile} 

@@ -20,7 +20,7 @@ const Input = ({ label, id, className, children, error, ...rest }:InputProps) =>
       >
       {label}
       </label>
-      <div className="flex">
+      <div className="relative w-full">
         <input
           id={id}
           className={clsx(
@@ -33,12 +33,9 @@ const Input = ({ label, id, className, children, error, ...rest }:InputProps) =>
           {...rest}
         />
         {children && (
-          <span 
-          className="flex items-center px-3 rounded-r-lg bg-primary-300 text-black text-sm h-full -ml-2"
-          style={{ height: '40px' }}
-          >
-          {children}
-          </span>
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"> 
+                    {children}
+          </div>
         )}
       </div>
       {error && <span className="text-red-300 my-2">{error}</span>}

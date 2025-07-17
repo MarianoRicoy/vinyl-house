@@ -1,11 +1,16 @@
-import { products } from '@/helpers/products';
+'use client'
+import { useCartContext } from '@/context/cartContext';
 import React from 'react';
 import { TbVinyl } from 'react-icons/tb';
+import ProductCartCard from './components/product-card-cart';
 
 const PageCart = () => {
-  const cart = products.slice(0, 4);
+  const { cart, } = useCartContext();
 
-  const total = cart.reduce((sum, product) => sum + product.price, 0);
+  //const total = cart.reduce((sum, product) => sum + product.price, 0);
+  const total = cart?.reduce((sum, product) => sum + (product.price || 0), 0) || 0;
+
+
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-300 text-zinc-800">
@@ -28,27 +33,9 @@ const PageCart = () => {
 
         {/* Lista de productos */}
         <ul className="space-y-6">
-          {cart.map((product) => (
-            <li
-              key={product.id}
-              className="flex gap-4 bg-white border border-zinc-200 rounded-xl p-4 shadow-sm hover:shadow-md transition relative"
-            >
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-24 h-32 object-cover rounded-md border border-zinc-300"
-              />
-              <div className="space-y-1 text-sm md:text-base flex-1">
-                <p className="font-semibold text-zinc-900">{product.name}</p>
-                <p className="text-zinc-500 line-clamp-2">{product.description}</p>
-                <p className="text-zinc-700">
-                  <strong>Precio:</strong> ${product.price}
-                </p>
-              </div>
-              <button className="absolute top-2 right-2 text-sm text-red-400 hover:text-red-500 transition">
-                Borrar
-              </button>
-            </li>
+          {cart?.map((product) => (
+          <ProductCartCard key={product.id} {...product} />
+
           ))}
         </ul>
 
@@ -59,7 +46,7 @@ const PageCart = () => {
         </div>
       </div>
 
-      {/* 🖼️ Imagen - lado derecho sutil */}
+      {/* Imagen - lado derecho  */}
       <div className="w-full md:w-1/2 relative">
         <div className="absolute inset-0 bg-black/30 z-10 backdrop-blur-sm" />
         <img

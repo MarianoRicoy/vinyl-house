@@ -8,7 +8,7 @@ import { AuthNavbar } from './auth-navbar';
 
 export const Navbar = () => {
   return (
-    <nav className="border-gray-50 bg-gray-200 dark:bg-gray-400 dark:border-gray-700">
+    <nav className="z-50 border-gray-50 bg-gray-200 dark:bg-gray-400 dark:border-gray-700">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href={routes.home} className="flex items-center space-x-3 rtl:space-x-reverse">
           <span className="flex items-center gap-2 text-2xl font-semibold text-gray-600">

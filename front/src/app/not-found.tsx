@@ -1,6 +1,6 @@
 import Container from "@/components/layout/container";
 import Footer from "@/components/layout/footer";
-import Navbar from "@/components/layout/navbar/navbar";
+import { Navbar } from "@/components/layout/navbar/navbar";
 import Link from "next/link";
 import React from "react";
 

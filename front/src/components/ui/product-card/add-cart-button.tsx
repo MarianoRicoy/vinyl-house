@@ -1,26 +1,51 @@
 'use client'
-import React from 'react'
+import React, { FC } from 'react'
 import Button from '../button'
 import Link from 'next/link';
 import { routes } from '@/routes';
+import { UseAuthContext } from '@/context/authContext';
+import { useCartContext } from '@/context/cartContext';
+import Loader from '../loader/loader';
 
-const AddCartButton = () => {
-  const isAuthenticated = false;
+const AddCartButton:FC<{product:Partial<IProduct>}> = ({product}) => {
+  const {isAuth} = UseAuthContext();
+  const {addToCart, isProductInCart}= useCartContext();
+  const isOnCart = product && product.id !== undefined ? isProductInCart(product.id) : false;
 
-  if (!isAuthenticated) {
-    return (
-      <div>
-        <p>
-        por favor, <Link href={routes.login}
-        className='text-gray-500 underline
-        hover:font-medium'>inicia sesion</Link> para agregar productos al carrito</p>
-      </div>
-    )
+
+  const handleAddTocart = (e: React.MouseEvent<HTMLButtonElement>) =>{
+    e.stopPropagation();
+    return addToCart(product);
+  };
+  if (isAuth == null) {
+    return <Loader />
   }
-  // If the user is authenticated, show the button
+
+if (isAuth == false) {
   return (
-  <Button label="Agregar al Carrito" variant="tertiary" className='w-full'/>
-  )
+    <div>
+      <p>
+        Por favor,{" "}
+        <Link
+          href={routes.login}
+          className=" text-primary-500 underline hover:font-medium "
+        >
+          inicia sesión
+        </Link>{" "}
+        para agregar productos al carrito.
+      </p>
+    </div>
+  );
 }
 
-export default AddCartButton
+return (
+  <Button
+    label={isOnCart ? "Producto agregado" : "Agregar al carrito"}
+    className="w-full"
+    onClick={isOnCart ? () => null : handleAddTocart}
+    //disabled={isOnCart}
+  />
+);
+};
+export default AddCartButton;
+

@@ -23,9 +23,11 @@ export default async function Page({
 
   return (
 <div
-  className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat flex items-center justify-center"
+  className="relative min-h-screen bg-cover bg-center bg-no-repeat pt-16"
   style={{ backgroundImage: "url('')" }}
 >
+
+
   <div className="bg-black/70 backdrop-blur-md rounded-2xl shadow-2xl max-w-5xl w-full flex flex-col md:flex-row overflow-hidden">
     {/* Imagen del producto */}
     <div className="md:w-1/2 w-full">
@@ -48,7 +50,7 @@ export default async function Page({
           </div>
 
           {/* Botón */}
-<AddCartButton/>
+<AddCartButton  product={product}/>
         </div>
       </div>
     </div>

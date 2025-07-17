@@ -24,7 +24,7 @@ const Button: FC<ButtonProps> = ({
   return (
     <button
       {...props}
-      className={cs(buttonVariants[variant], className)} // ✅ className solo para márgenes, ancho, etc.
+      className={cs(buttonVariants[variant], className)}
     >
       {label}
     </button>

@@ -134,9 +134,8 @@ const RegisterForm = () => {
             >
               <div 
                 onClick={togglePasswordVisibility}
-                className="cursor-pointer absolute right-1 top-1/2 -translate-y-1/2"
-              >
-                {showPassword ? <EyeOff /> : <EyeIcon />} 
+                className="cursor-pointer absolute right-3 top-1/2 -translate-y-1/2">
+                {showPassword ? <EyeOff size={24} /> : <EyeIcon size={24} />}
               </div>
             </Input>
 
@@ -152,8 +151,7 @@ const RegisterForm = () => {
             >
               <div
                 onClick={togglePasswordVisibility}
-                className="cursor-pointer absolute right-3 top-1/2 -translate-y-1/2"
-              >
+                className="cursor-pointer absolute right-3 top-1/2 -translate-y-1/2">
                 {showPassword ? <EyeOff /> : <EyeIcon />}
               </div>
             </Input>
