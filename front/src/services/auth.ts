@@ -1,11 +1,7 @@
 "use server";
-import axios from "axios";
-import { LoginServiceResponse } from "./types";
-console.log("BaseURL Axios:", process.env.NEXT_PUBLIC_API_URL);
+import { LoginServiceResponse } from "./utils/types";
+import { axiosApiBack } from "./utils";
 
-const axiosApiBack = axios.create({
-  baseURL: process.env.API_URL, //http://localhost:3002
-});
 
 export const postRegister = async (data: RegisterUserDto) => {
   try{
@@ -57,4 +53,6 @@ export const postLogin = async (data: LoginUserDto): Promise<LoginServiceRespons
     };
   };
 };
+
+
 

@@ -1,9 +1,7 @@
 'use server'
-import axios from "axios";
 
-const axiosApiBack = axios.create({
-  baseURL: process.env.API_URL, //http://localhost:3002
-});
+import { axiosApiBack } from "./utils";
+
 
   export const getProducts = async () => {
   try{
@@ -11,16 +9,19 @@ const res = await axiosApiBack.get('/products')
 //const res = null
 
 if (!res.data || !Array.isArray(res.data)){
-  console.warn('invalid products data format', res.data);
+  console.warn('invalid products data format', res.data)
   return[];
 } 
 return res.data
-  }catch(e){
-if (e instanceof Error)
+  }catch(e) {
+if (e instanceof Error) {
 console.warn("error fetching products list", e?.message)
   };
-  return[];
+
+    return[];
+  };
 };
+
   export const getProductById = async (id:string): Promise<IProduct | null> => {
   try{
 const res = await axiosApiBack.get('/products/' + id)

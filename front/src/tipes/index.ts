@@ -42,7 +42,7 @@ type SearchParams<T> = Promise<T>;
 
 // TODO: llevar al servicio de fetch cuando lo implmentemos
 
-interface createOrderDto { //POST
+interface CreateOrderDto { //POST
     userId: number;
     products: number[];
 }

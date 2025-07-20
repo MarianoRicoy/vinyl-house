@@ -15,7 +15,7 @@ import { useCartContext } from '@/context/cartContext';
 export const AuthNavbar = () => {
   const { isAuth, resetUserData } = UseAuthContext(); 
   const pathname = usePathname();
-  const {total} = useCartContext();
+  const {total, resetCart} = useCartContext();
   
 
   const user = {
@@ -29,6 +29,7 @@ export const AuthNavbar = () => {
 
   const logout = () =>{
   resetUserData();
+  resetCart();
 
 
   if (pathname === routes.home) {

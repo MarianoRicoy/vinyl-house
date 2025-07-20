@@ -41,7 +41,6 @@ const LoginForm = () => {
 const handleValidation = async () => {
   try {
     await loginSchema.validate(formData, { abortEarly: false });
-    console.log('Validación exitosa');
   } catch (error) {
     if (error instanceof yup.ValidationError) {
       console.error('Errores de validación:', error.errors);
@@ -74,11 +73,10 @@ try{
 setLoading(true);
 const res = await postLogin (formData);
 
-if (res.errors) {
-  console.log("error",res);
+if (res?.errors) {
+  console.warn("error",res);
   return toast.error("ocurrio un error al iniciar sesion");
 }
-console.log("respuesta", res.data);
 toast.success("Usuario logueado correctamente");
 
 //guardar datos del usuario

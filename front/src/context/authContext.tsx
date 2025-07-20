@@ -1,5 +1,5 @@
 'use client';
-import { LoginResponse } from "@/services/types";
+import { LoginResponse } from "@/services/utils/types";
 import { createContext, JSX, useContext, useEffect, useState } from "react";
 
 type AuthContextType = {
@@ -50,12 +50,10 @@ useEffect(() => {
   const storage = JSON.parse(localStorage.getItem
   (AUTH_KEY) || "{}");
   
-  console.log("storage", storage);
-
-//en caso de que estuviera logueado y borrara por a o b el local storage
   if (storage === undefined || !Object.keys(storage)?.
   length) {
     setIsAuth(false);
+    setToken("");
     return
   }
   

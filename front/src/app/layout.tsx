@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import { ToastContainer, Flip } from "react-toastify";
 import { AuthProvider } from "@/context/authContext";
 import { CartProvider } from "@/context/cartContext";
+import RoutesPrivacy from "@/hook/useRoutesPrivacy/routes-privacy";
 
 
 
@@ -30,22 +31,25 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-      <AuthProvider>
-      <CartProvider>{children}</CartProvider>
-      </AuthProvider>
-      <ToastContainer
-      position="top-center"
-      autoClose={1999}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick={false}
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="light"
-      transition={Flip}
-/>
+        <AuthProvider>
+          <CartProvider>
+            <RoutesPrivacy>{children}</RoutesPrivacy>
+          </CartProvider>
+        </AuthProvider>
+        <ToastContainer
+
+          position="top-center"
+          autoClose={1999}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          transition={Flip}
+        />
       </body>
     </html>
   );
