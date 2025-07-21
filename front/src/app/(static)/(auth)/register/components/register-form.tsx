@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import Button from '@/components/ui/button';
 import { EyeIcon, EyeOff } from 'lucide-react';
 import { postRegister } from '@/services/auth';
+import { useRouter } from 'next/navigation';
 
 const RegisterSchema = Yup.object().shape({
   email: Yup.string().email('Correo electrónico inválido').required('Campo requerido'),
@@ -27,6 +28,7 @@ interface RegisterUserForm extends RegisterUserDto {
 }
 
 const RegisterForm = () => {
+  const router = useRouter();
   const [showPassword, setShowPassword] = React.useState(false);
 
   const initialValues: RegisterUserForm = {
@@ -74,6 +76,7 @@ const RegisterForm = () => {
 
       //cuando sale bien:
       alert("El usuario se ha creado correctamente")
+      router.push("/login")
       }catch (e) {
         console.log(e)
       alert("ocurrio un error al registrar el usuario")

@@ -26,6 +26,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cart, setCart] = useState<Partial<IProduct>[]>([]);
   const [total, setTotal] = useState<number>(0);
+  const [isInitialized, setIsInitialized] = useState(false); // 👈 NUEVO
 
   // 🔢 Precio total calculado automáticamente
   const priceTotal = useMemo(() => {
@@ -57,7 +58,6 @@ export const CartProvider: FC<{ children: React.ReactNode }> = ({ children }) =>
   const resetCart = () => {
     setCart([]);
     setTotal(0);
-    // ❌ Ya no usamos setPriceTotal
   };
 
   // 🔍 Verificar si un producto ya está en el carrito
@@ -66,16 +66,16 @@ export const CartProvider: FC<{ children: React.ReactNode }> = ({ children }) =>
     return cart.some((item) => item.id === productId);
   };
 
-  // 💾 Guardar en localStorage
+  // 💾 Guardar en localStorage — solo si ya se restauró antes
   useEffect(() => {
-    if (!cart) return;
+    if (!isInitialized) return;
 
     localStorage.setItem(CART_LOCAL_STORAGE_KEY, JSON.stringify(cart));
     localStorage.setItem(
       CART_TOTAL_LOCAL_STORAGE_KEY,
       JSON.stringify(total || 0)
     );
-  }, [cart, total]);
+  }, [cart, total, isInitialized]); // 👈 se agrega isInitialized
 
   // ♻️ Restaurar desde localStorage al iniciar
   useEffect(() => {
@@ -85,6 +85,7 @@ export const CartProvider: FC<{ children: React.ReactNode }> = ({ children }) =>
     if (!storedCart || !storedTotal) {
       setCart([]);
       setTotal(0);
+      setIsInitialized(true); // 👈 importante
       return;
     }
 
@@ -96,6 +97,8 @@ export const CartProvider: FC<{ children: React.ReactNode }> = ({ children }) =>
       setCart([]);
       setTotal(0);
     }
+
+    setIsInitialized(true); // 👈 después del intento de restaurar
   }, []);
 
   return (

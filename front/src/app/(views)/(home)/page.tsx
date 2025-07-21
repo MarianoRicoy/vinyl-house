@@ -25,7 +25,7 @@ return (
         />
       </section>
       <section>
-        <h2>Productos Destacados 🎶</h2>
+        <h2 className="text-center font-semibold text-lg mb-4">Productos Destacados 🎶</h2>
       <ProductsList products={products} />
       </section>
     </div>

@@ -1,4 +1,4 @@
-interface Icategory {
+interface ICategory {
     id: number;
     name: string;
     products?: IProduct[];
@@ -20,7 +20,7 @@ interface IProduct {
     stock: number;
     image: string;
     categoryId: number;
-    //category: Icategory;
+    //category: ICategory;
 }
 
 enum eRole {

@@ -18,14 +18,7 @@ export const AuthNavbar = () => {
   const {total, resetCart} = useCartContext();
   
 
-  const user = {
-    id: 1,
-    name: 'Mariano Ricoy',
-    email: 'nano@example.com',
-    address: 'Calle 123, Miramar, Buenos Aires',
-    phone: '+54 9 223 4567890',
-    role: 'user',
-  }; 
+  const {user} = UseAuthContext();
 
   const logout = () =>{
   resetUserData();
@@ -79,7 +72,7 @@ export const AuthNavbar = () => {
     className='flex items-center space-x-2 rtl:space-x-reverse'
     >
       <PiUserCircleDuotone className="h-8 w-8 text-gray-500"/>
-    <span className='cursor-pointer font-medium'>{user.name}</span>
+    <span className='cursor-pointer font-medium'>{user?.name}</span>
     </Link>  
   <div onClick={logout} className='cursor-pointer'>
     <MdLogout className='h-5 w-5 text-gray-500'/>

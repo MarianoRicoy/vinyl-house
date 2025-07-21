@@ -8,7 +8,7 @@ export const postRegister = async (data: RegisterUserDto) => {
     const res = await axiosApiBack.post("/users/register", data);
 
     if(!res.data) {
-      console.warn("Imvalid post register data format", res.data );
+      console.warn("Invalid post register data format", res.data );
       return {
         message: "Error al registrar el usuario",
         errors: res.data,
