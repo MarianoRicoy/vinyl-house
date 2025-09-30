@@ -8,19 +8,19 @@ Aplicación frontend con **React + Vite + Tailwind**, enfocada en un diseño lim
 ## 🖼️ Vista previa
 
 ### Home
-![Home](./screenshots/Home.png)
+![Home](./front/screenshots/Home.png)
 
 ### Categorías
-![Categories](./screenshots/Categories.png)
+![Categories](./front/screenshots/Categories.png)
 
 ### Carrito
-![Cart](./screenshots/Cart.png)
+![Cart](./front/screenshots/Cart.png)
 
 ### Perfil de usuario
-![Profile](./screenshots/Profile.png)
+![Profile](./front/screenshots/Profile.png)
 
 ### Registro
-![Register](./screenshots/Register.png)
+![Register](./front/screenshots/Register.png)
 
 ---
 
