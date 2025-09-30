@@ -10,9 +10,9 @@ const PageLanding = () => {
 
     return (
         <div
-            className="min-h-screen bg-zinc-950 text-white px-6 py-12 bg-cover bg-center"
+            className="min-h-screen bg-zinc-950 text-gray-800 px-6 py-12 bg-cover bg-center"
             style={{
-                backgroundImage: "url('/fondoVinilo.jpg')",
+                backgroundImage: "url('/fondoViniloVII.jpg')",
             }}
         >
             <div className="max-w-5xl mx-auto space-y-16">
@@ -22,7 +22,7 @@ const PageLanding = () => {
                     <h1 className="text-4xl font-bold tracking-tight">
                         Vinilos que cambiaron la historia
                     </h1>
-                    <p className="text-gray-400 max-w-xl mx-auto">
+                    <p className="text-gray-900 max-w-xl mx-auto">
                         Ediciones originales de dos álbumes legendarios. Piezas de colección.
                     </p>
                     <Link
